@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: my_mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: teteu
+      MYSQL_DATABASE: devspace
+      MYSQL_USER: teteu
+      MYSQL_PASSWORD: teteu
+    ports:
+      - "3306:3306"
