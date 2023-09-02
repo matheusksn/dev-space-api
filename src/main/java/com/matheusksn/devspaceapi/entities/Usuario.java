@@ -11,6 +11,7 @@ import lombok.Data;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+	
     @Id
     private Long id;
     private String nome;
@@ -18,6 +19,8 @@ public class Usuario {
     private Boolean isActive;
     private String cpfCnpj;
     private String phone;
+    private String provider;
+
 
     @ManyToOne
     @JoinColumn(name = "id_user_type")
