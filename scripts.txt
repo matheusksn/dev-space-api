@@ -1,0 +1,2 @@
+INSERT INTO type_user (id, nome) VALUES (1, 'Aluno');
+INSERT INTO type_user (id, nome) VALUES (2, 'Professor');

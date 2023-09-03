@@ -3,6 +3,8 @@ package com.matheusksn.devspaceapi.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,7 +15,9 @@ import lombok.Data;
 @Entity
 @Table(name = "boleto_status")
 public class BoletoStatus {
+	
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -26,7 +30,6 @@ public class BoletoStatus {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
 }
 
 enum Status {
