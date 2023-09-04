@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.matheusksn.devspaceapi.dtos.UserDTO;
+import com.matheusksn.devspaceapi.entities.UserType;
 import com.matheusksn.devspaceapi.entities.Usuario;
 import com.matheusksn.devspaceapi.repositories.UsuarioRepository;
 
@@ -20,13 +22,25 @@ public class UsuarioService {
  private PasswordEncoder passwordEncoder;
 
 
- public Usuario registerUser(Usuario usuario) {
-     usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+ public Usuario registerUser(UserDTO userDTO) {
+     Usuario usuario = new Usuario();
+     usuario.setNome(userDTO.getNome());
+     usuario.setEmail(userDTO.getEmail());
+     usuario.setCpfCnpj(userDTO.getCpfCnpj());
+     usuario.setPhone(userDTO.getPhone());
+     usuario.setPassword(passwordEncoder.encode(userDTO.getPassword()));
      usuario.setIsActive(true);
      usuario.setRole("USER");
+     usuario.setProvider("Local");
+     usuario.setIsProfileComplete(true);
+     Long userTypeId = 1L;
+     UserType desiredUserType = new UserType();
+     desiredUserType.setId(userTypeId);
+     usuario.setUserType(desiredUserType);
+
      return usuarioRepository.save(usuario);
  }
-
+ 
  public List<Usuario> listActiveUsers() {
      return usuarioRepository.findByIsActive(true);
  }

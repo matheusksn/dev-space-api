@@ -44,4 +44,7 @@ public class Usuario {
     private String provider;
     
     private String role;
+    
+    private Boolean isProfileComplete;
+
 }

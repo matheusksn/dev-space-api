@@ -47,6 +47,7 @@ public class OAuth2UserService {
             newUser.setNome(name);
             newUser.setPhone(phone);  
             newUser.setIsActive(true);
+            newUser.setIsProfileComplete(false);
             newUser.setProvider(provider);
             newUser.setUserType(determineUserType(email, provider));
             userRepository.save(newUser);

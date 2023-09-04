@@ -29,6 +29,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeRequests(auth -> {
+                auth.requestMatchers("/api/users/login").permitAll();
                 auth.requestMatchers("/", "/favicon.ico", "/api/users/register").permitAll();
                 auth.anyRequest().authenticated();
             })
@@ -45,4 +46,7 @@ public class SecurityConfig {
             );
         return http.build();
     }
+    
+
+    
 }
