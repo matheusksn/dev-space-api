@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.matheusksn.devspaceapi.dtos.UserDTO;
 import com.matheusksn.devspaceapi.entities.UserType;
 import com.matheusksn.devspaceapi.entities.Usuario;
+import com.matheusksn.devspaceapi.enums.UserRole;
 import com.matheusksn.devspaceapi.repositories.UsuarioRepository;
 
 @Service
@@ -28,16 +29,16 @@ public class UsuarioService {
      usuario.setEmail(userDTO.getEmail());
      usuario.setCpfCnpj(userDTO.getCpfCnpj());
      usuario.setPhone(userDTO.getPhone());
+     usuario.setLogin(userDTO.getLogin());
      usuario.setPassword(passwordEncoder.encode(userDTO.getPassword()));
      usuario.setIsActive(true);
-     usuario.setRole("USER");
+     usuario.setRole(UserRole.USER);
      usuario.setProvider("Local");
      usuario.setIsProfileComplete(true);
      Long userTypeId = 1L;
      UserType desiredUserType = new UserType();
      desiredUserType.setId(userTypeId);
      usuario.setUserType(desiredUserType);
-
      return usuarioRepository.save(usuario);
  }
  
@@ -67,4 +68,9 @@ public class UsuarioService {
  public Usuario completeProfile(Usuario updatedUsuario) {
 	    return usuarioRepository.save(updatedUsuario);
 	}
+ 
+ public boolean firstAccess(String login) {
+	    return this.usuarioRepository.findByLogin(login) == null;
+	}
+
 }

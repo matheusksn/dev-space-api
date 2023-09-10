@@ -58,7 +58,7 @@ public Usuario completeProfile(@RequestBody Usuario usuario) {
 /*/@PostMapping("/login")
 public ResponseEntity<?> loginUser(@RequestBody Usuario usuario) {
     Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(
+        new loginPasswordAuthenticationToken(
             usuario.getEmail(),
             usuario.getPassword()
         )

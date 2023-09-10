@@ -33,7 +33,7 @@ public class OAuth2UserService {
             return handleOAuth2User(email, name, phone, provider); // Passando o telefone
         }
         
-        return null; // ou lançar uma exceção
+        return null; 
     }
 
     public Usuario handleOAuth2User(String email, String name, String phone, String provider) {

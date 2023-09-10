@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.matheusksn.devspaceapi.entities.Usuario;
 
@@ -14,6 +15,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findByEmail(String email);
     
     List<Usuario> findByIsActive(Boolean isActive);
+    
+    UserDetails findByLogin(String nickName);
 
 
 }
