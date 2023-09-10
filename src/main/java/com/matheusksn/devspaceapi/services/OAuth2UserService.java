@@ -1,16 +1,8 @@
 package com.matheusksn.devspaceapi.services;
 
-import java.util.Map;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import com.matheusksn.devspaceapi.entities.UserType;
-import com.matheusksn.devspaceapi.entities.Usuario;
 import com.matheusksn.devspaceapi.repositories.UsuarioRepository;
 
 @Service
@@ -19,7 +11,7 @@ public class OAuth2UserService {
     @Autowired
     UsuarioRepository userRepository;
 
-    public Usuario getCurrentUser() {
+  /*  public Usuario getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         
         if (authentication instanceof OAuth2AuthenticationToken) {
@@ -66,5 +58,5 @@ public class OAuth2UserService {
         }
         
         return userType;
-    }
+    } /*/
 }
