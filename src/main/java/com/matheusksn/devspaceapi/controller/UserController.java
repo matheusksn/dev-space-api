@@ -11,38 +11,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.matheusksn.devspaceapi.entities.Usuario;
-import com.matheusksn.devspaceapi.services.UsuarioService;
+import com.matheusksn.devspaceapi.entities.User;
+import com.matheusksn.devspaceapi.services.UserService;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
  @Autowired
- private UsuarioService usuarioService;
+ private UserService usuarioService;
+ 
 
  @GetMapping("/active")
- public List<Usuario> listActiveUsers() {
+ public List<User> listActiveUsers() {
      return usuarioService.listActiveUsers();
  }
 
  @GetMapping("/inactive")
- public List<Usuario> listInactiveUsers() {
+ public List<User> listInactiveUsers() {
      return usuarioService.listInactiveUsers();
  }
 
  @PutMapping("/update/{id}")
- public Usuario updateUser(@PathVariable Long id, @RequestBody Usuario updatedUsuario) {
-     return usuarioService.updateUser(id, updatedUsuario);
+ public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+     return usuarioService.updateUser(id, updatedUser);
  }
 
  @PutMapping("/desactivate/{id}")
- public Usuario deactivateUser(@PathVariable Long id) {
+ public User deactivateUser(@PathVariable Long id) {
      return usuarioService.desactivateUser(id);
  }
 
 @PostMapping("/completeProfile")
-public Usuario completeProfile(@RequestBody Usuario usuario) {
+public User completeProfile(@RequestBody User usuario) {
   return usuarioService.completeProfile(usuario);
 }
 

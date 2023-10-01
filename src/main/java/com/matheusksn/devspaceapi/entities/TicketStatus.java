@@ -13,8 +13,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "boleto_status")
-public class BoletoStatus {
+@Table(name = "TICKET_STATUS")
+public class TicketStatus {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class BoletoStatus {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "id_boleto")
-    private Boleto boleto;
+    private Ticket ticket;
 
     @Enumerated(EnumType.STRING)
     private Status status;

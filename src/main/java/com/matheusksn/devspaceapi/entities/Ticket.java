@@ -9,10 +9,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "boleto")
-public class Boleto {
+@Table(name = "TICKET")
+public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String name;
 }

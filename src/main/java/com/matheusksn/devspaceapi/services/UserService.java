@@ -8,24 +8,24 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.matheusksn.devspaceapi.dtos.UserDTO;
+import com.matheusksn.devspaceapi.entities.User;
 import com.matheusksn.devspaceapi.entities.UserType;
-import com.matheusksn.devspaceapi.entities.Usuario;
 import com.matheusksn.devspaceapi.enums.UserRole;
-import com.matheusksn.devspaceapi.repositories.UsuarioRepository;
+import com.matheusksn.devspaceapi.repositories.UserRepository;
 
 @Service
-public class UsuarioService {
+public class UserService {
 
  @Autowired
- private UsuarioRepository usuarioRepository;
+ private UserRepository usuarioRepository;
 
  @Autowired
  private PasswordEncoder passwordEncoder;
 
 
- public Usuario registerUser(UserDTO userDTO) {
-     Usuario usuario = new Usuario();
-     usuario.setNome(userDTO.getNome());
+ public User registerUser(UserDTO userDTO) {
+     User usuario = new User();
+     usuario.setName(userDTO.getName());
      usuario.setEmail(userDTO.getEmail());
      usuario.setCpfCnpj(userDTO.getCpfCnpj());
      usuario.setPhone(userDTO.getPhone());
@@ -42,31 +42,31 @@ public class UsuarioService {
      return usuarioRepository.save(usuario);
  }
  
- public List<Usuario> listActiveUsers() {
+ public List<User> listActiveUsers() {
      return usuarioRepository.findByIsActive(true);
  }
 
- public List<Usuario> listInactiveUsers() {
+ public List<User> listInactiveUsers() {
      return usuarioRepository.findByIsActive(false);
  }
 
- public Usuario updateUser(Long id, Usuario updatedUsuario) {
-     Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-     usuario.setNome(updatedUsuario.getNome());
-     usuario.setEmail(updatedUsuario.getEmail());
-     usuario.setPassword(passwordEncoder.encode(updatedUsuario.getPassword()));
-     usuario.setIsActive(updatedUsuario.getIsActive());
+ public User updateUser(Long id, User updatedUser) {
+     User usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+     usuario.setName(updatedUser.getName());
+     usuario.setEmail(updatedUser.getEmail());
+     usuario.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+     usuario.setIsActive(updatedUser.getIsActive());
      return usuarioRepository.save(usuario);
  }
 
- public Usuario desactivateUser(Long id) {
-     Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+ public User desactivateUser(Long id) {
+     User usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
      usuario.setIsActive(false);
      return usuarioRepository.save(usuario);
  }
  
- public Usuario completeProfile(Usuario updatedUsuario) {
-	    return usuarioRepository.save(updatedUsuario);
+ public User completeProfile(User updatedUser) {
+	    return usuarioRepository.save(updatedUser);
 	}
  
  public boolean firstAccess(String login) {

@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.matheusksn.devspaceapi.enums.UserRole;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,17 +23,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "usuario", uniqueConstraints = {
+@Table(name = "user", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email"),
         @UniqueConstraint(columnNames = "cpfCnpj")
 })
-public class Usuario implements UserDetails{
+public class User implements UserDetails{
 		  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String nome;
+    private String name;
     
     private String login;
 
@@ -48,8 +49,8 @@ public class Usuario implements UserDetails{
 
     private String phone;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user_type")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_type_id")
     private UserType userType;
     
     private String provider;

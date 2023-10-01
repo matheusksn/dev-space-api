@@ -7,10 +7,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "type_user")
+@Table(name = "user_type")
 public class UserType {
 	
     @Id
     private Long id;
-    private String nome;
+    private String name;
 }

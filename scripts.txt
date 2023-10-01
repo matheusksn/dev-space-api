@@ -1,2 +1,2 @@
-INSERT INTO type_user (id, nome) VALUES (1, 'Aluno');
-INSERT INTO type_user (id, nome) VALUES (2, 'Professor');
+INSERT INTO type_user (id, name) VALUES (1, 'Aluno');
+INSERT INTO type_user (id, name) VALUES (2, 'Professor');

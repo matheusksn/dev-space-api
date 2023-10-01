@@ -6,15 +6,15 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.matheusksn.devspaceapi.entities.Usuario;
+import com.matheusksn.devspaceapi.entities.User;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-	Optional<Usuario> findByEmailAndProvider(String email, String provider);
+	Optional<User> findByEmailAndProvider(String email, String provider);
 
-    Usuario findByEmail(String email);
+    User findByEmail(String email);
     
-    List<Usuario> findByIsActive(Boolean isActive);
+    List<User> findByIsActive(Boolean isActive);
     
     UserDetails findByLogin(String nickName);
 
