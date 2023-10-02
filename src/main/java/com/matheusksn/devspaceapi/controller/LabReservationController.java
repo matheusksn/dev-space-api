@@ -20,7 +20,7 @@ import com.matheusksn.devspaceapi.entities.LabReservation;
 import com.matheusksn.devspaceapi.services.LabReservationService;
 
 @RestController
-@RequestMapping("/lab-reservations")
+@RequestMapping("api/lab-reservations")
 public class LabReservationController {
 
     @Autowired
