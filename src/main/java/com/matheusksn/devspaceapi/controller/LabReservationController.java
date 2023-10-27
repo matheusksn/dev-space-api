@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.matheusksn.devspaceapi.dtos.AvailableLabDTO;
+import com.matheusksn.devspaceapi.dtos.LabReservationRequestDTO;
 import com.matheusksn.devspaceapi.entities.LabReservation;
 import com.matheusksn.devspaceapi.services.LabReservationService;
 
@@ -58,4 +59,39 @@ public class LabReservationController {
         List<AvailableLabDTO> availableLabs = labReservationService.getAvailableLabsWithAvailability(startDate, endDate);
         return new ResponseEntity<>(availableLabs, HttpStatus.OK);
     }
+    
+    @PostMapping("/reserve-lab")
+    public String reserveLab(@RequestBody LabReservationRequestDTO request) {
+        Long labId = request.labId();
+        Long userId = request.userId();
+        String date = request.date();
+        Long userTypeId = request.userTypeId();
+
+        // Verifica se o laboratório está disponível na data e hora especificadas
+        boolean isLabAvailable = labReservationService.labStatus(labId, date);
+
+        if (!isLabAvailable) {
+            return "Lab not available at the specified date and time.";
+        }
+
+        // Verifica se o laboratório está ativo
+        boolean isLabActive = checkLabActivity(labId);
+
+        if (!isLabActive) {
+            return "Lab is not active.";
+        }
+
+        if (userTypeId != null && userTypeId == 1) {
+            // Se o userType for 1 (aluno), gera o boleto fictício
+            String boleto = labReservationService.generateBoleto(userId);
+
+        }
+
+        return "Lab reservation created.";
+    }
+
+	private boolean checkLabActivity(Long labId) {
+		return true;
+	}
+
 }

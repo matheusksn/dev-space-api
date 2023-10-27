@@ -32,4 +32,6 @@ public class LabReservation {
     
     private String paymentStatus; 
     
+    private String boleto;
+    
 }
